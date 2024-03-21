@@ -9,6 +9,7 @@ from utils.calculate_frames import calculateFrames
 from utils.team_initialization_and_update import intitializeTeam
 from utils.pirate_initialization import intitializePirate
 from utils.reset_pirate_signal import resetPirateSignal
+from utils.no_pirates_at_point import NoOfPiratesAssembled
 
 name = "Hack_of_clans"
 
@@ -22,7 +23,7 @@ def gradualDefensePirate(pirate):
     resetPirateSignal(pirate)
 
     for island_no in range(1,4):        #First loop to put a serpoint some tiles away and add it to team signal
-        if status[island_no + 2] == "oppCapturing" and status[island_no - 1] == "myCaptured" and team_signal[5 + island_no] != " " and decipher(team_signal[5 + island_no]) != 0:
+        if status[island_no + 2] == "oppCapturing" and status[island_no - 1] == "myCaptured" and team_signal[5 + island_no] != " " and decipher(team_signal[5 + island_no]) > 0:
             for index in range(0,max(min(10,no_of_pirates//10),min(no_of_pirates,3))):
                 if(team_signal[island_no*10+index] == cipher(int(pirate.getID()))):
                     island_x = decipher(team_signal[2*island_no-2])
@@ -34,7 +35,7 @@ def gradualDefensePirate(pirate):
                     return moveTo(decipher(pirate_signal[3]), decipher(pirate_signal[4]), pirate)
 
     for island_no in range(1,4):        #Once checkpoint reached push all pirates to interior of island
-        if status[island_no+2] == "oppCapturing" and status[island_no - 1] == "myCaptured" and decipher(team_signal[5 + island_no]) == 0:
+        if status[island_no+2] == "oppCapturing" and status[island_no - 1] == "myCaptured" and team_signal[5 + island_no] != " " and decipher(team_signal[5 + island_no]) <= 0:
             for index in range(0,max(min(10,no_of_pirates//10),min(no_of_pirates,3))):
                 if(team_signal[island_no*10+index] == cipher(int(pirate.getID()))):
                     island_x = decipher(team_signal[2*island_no-2])
@@ -92,7 +93,7 @@ def gradualDefenseTeam(team):
     status = team.trackPlayers()
 
     for island_no in range(1,4):            # Reducing frames so that defense entry is coordinated
-        if status[island_no + 2] == "oppCapturing" and team_signal[5 + island_no] != " " and decipher(team_signal[5 + island_no]) != 0:
+        if status[island_no + 2] == "oppCapturing" and team_signal[5 + island_no] != " ":
             reduceFrames(team, island_no)              #Reduces frames required to reach assembly point by 1 
 
     for island_no in range(1,4):            # if Opp capturing calculating frames to assemble at common defense point
@@ -105,15 +106,16 @@ def gradualDefenseTeam(team):
     team_signal = team.getTeamSignal()
 
     for island_no in range(1,4):        # Reset signal if island is defended successfully 
-        if status[2 + island_no] != "oppCapturing":
-            team_signal = team_signal[:5 + island_no] + " " + team_signal[6 + island_no:]
-            team.setTeamSignal(team_signal) 
+            if team_signal[5 + island_no] != " " and status[2 + island_no] != "oppCapturing" :
+                team_signal = team_signal[:5 + island_no] + " " + team_signal[6 + island_no:]
+                team.setTeamSignal(team_signal) 
         
 def ActTeam(team):
   
     intitializeTeam(team)
     gradualDefenseTeam(team)
 
+    # status = team.trackPlayers()
     # team_signal = team.getTeamSignal()
     # print(decipher(team_signal))
     # print(status)
