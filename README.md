@@ -6,11 +6,19 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 - Ensure you test thoroughly before pushing onto GitHub. Never push buggy code.
 
 ## Pirate Signal Composition: *Add more as required*
-**NOTE: All values are space-separated to make it easy to access via split method.**
-- x1: (2 digit number) - current location x coordinate
-- y1: (2 digit number) - current location y coordinate
-- was_last_move_1: (1 digit "T" or "F") - stores whether the previous move was the first primary move or not. Required for explore_quadrant.py
+**NOTE: All items are ciphered and take up only 1 character space unless mentioned otherwise.**
+- pirate_id (0)
+- pirateX (1)
+- pirateY (2)
+- targetX (3)
+- targetY (4)
+- was_last_move_1: Required for explore_quadrant.py (5)
+- is_home_explored: Required for explore_quadrant.py (6)
 
 
 ## Team Signal Composition: *Add more as required*
-**NOTE: All values are space-separated to make it easy to access via split method.**
+**NOTE: All items are ciphered and take up only 1 character space unless mentioned otherwise.**
+- island1X, island1Y, island2X, island2Y, island3X, island3Y (6 characters)
+- Time frames stored in next 3 characters (required for gradual_defense)
+- Total number of pirates alive
+- Storing 10 closes pirate IDs to every island (30 characters in total)

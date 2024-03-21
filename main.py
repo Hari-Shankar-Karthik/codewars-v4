@@ -4,5 +4,5 @@ import scriptred
 import trial_script
 
 if __name__ == "__main__":
-    G = Game((40, 40), trial_script, scriptblue)
+    G = Game((40, 40), scriptblue, trial_script)
     G.run_game()

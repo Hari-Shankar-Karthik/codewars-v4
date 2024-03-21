@@ -1,4 +1,4 @@
-from explore_quadrant import explore_main_quadrant
+from explore_quadrant import explore_main_quadrant, explore_side_quadrant
 
 name = "trial_script"
 
@@ -11,16 +11,19 @@ def ActPirate(pirate):
     y_dimension = pirate.getDimensionY()
     x, y = pirate.getPosition()
 
-    if x < x_dimension / 2:
-        if y < y_dimension / 2:
-            return explore_main_quadrant(pirate, 2, 3)
     
-        return explore_main_quadrant(pirate, 1, 2)
-    
-    if y < y_dimension / 2:
-        return explore_main_quadrant(pirate, 3, 4)
-    
-    return explore_main_quadrant(pirate, 1, 4)
 
+    if is_home_explored:
+        return explore_side_quadrant(pirate)
+
+    if x < x_dimension / 2 and y < y_dimension / 2:
+        return explore_main_quadrant(pirate, 2, 3)
+    elif x < x_dimension / 2 and y > y_dimension / 2:
+        return explore_main_quadrant(pirate, 2, 1)
+    elif x > x_dimension / 2 and y < y_dimension / 2:
+        return explore_main_quadrant(pirate, 4, 3)
+    elif x > x_dimension / 2 and y > y_dimension / 2:
+        return explore_main_quadrant(pirate, 4, 1)
+        
 def ActTeam(team):
     pass
