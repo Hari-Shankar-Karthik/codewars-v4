@@ -1,4 +1,4 @@
-island_cord =["","","",""]
+from utils.cipher import cipher
 
 def updateIslandCord(pirate):
     up = pirate.investigate_up()[0]
@@ -11,68 +11,115 @@ def updateIslandCord(pirate):
     left = pirate.investigate_left()[0]
     x, y = pirate.getPosition()
 
-    if (up[:-1] == "island"):
-        if (up == ne and up == nw):
-            s = up[-1] + str(x) + "," + str(y - 2)
-        elif (up == ne):
-            s = up[-1] + str(x+1) + "," + str(y - 2)
-        else:
-            s = up[-1] + str(x-1) + "," + str(y - 2)
+    team_signal = pirate.getTeamSignal()
 
-        if(island_cord[int(s[0])] == ""):
-            island_cord[int(s[0])] = s[1:]
+    if (up[:-1] == "island"):
+
+        island_no = int(up[-1])
+
+        if (up == ne and up == nw):
+            island_x = x 
+            island_y = y - 2
+        elif (up == ne):
+            island_x = x + 1
+            island_y = y - 2
+        else:
+            island_x = x - 1
+            island_y = y - 2
+    
+        if(team_signal[2*island_no-2] == " "):
+            team_signal = team_signal[0:2*island_no-2] + cipher(island_x) + cipher(island_y) + team_signal[2*island_no:]
 
     elif (down[:-1] == "island"):
-        if (down == se and down == sw):
-            s = down[-1] + str(x) + "," + str(y + 2)
-        elif (down == se):
-            s = down[-1] + str(x+1) + "," + str(y + 2)
-        else:
-            s = down[-1] + str(x-1) + "," + str(y + 2)
 
-        if(island_cord[int(s[0])] == ""):
-            island_cord[int(s[0])] = s[1:]
+        island_no = int(down[-1])
+
+        if (down == se and down == sw):
+            island_x = x
+            island_y = y + 2
+        elif (down == se):
+            island_x = x + 1
+            island_y = y + 2
+        else:
+            island_x = x - 1
+            island_y = y + 2
+
+        if(team_signal[2*island_no-2] == " "):
+            team_signal = team_signal[0:2*island_no-2] + cipher(island_x) + cipher(island_y) + team_signal[2*island_no:]
 
     elif (left[:-1] == "island"):
-        if (left == nw and left == sw):
-            s = left[-1] + str(x - 2) + "," + str(y)
-        elif (left == nw):
-            s = left[-1] + str(x - 2) + "," + str(y-1)
-        else:
-            s = left[-1] + str(x - 2) + "," + str(y+1)
 
-        if(island_cord[int(s[0])] == ""):
-            island_cord[int(s[0])] = s[1:]
+        island_no = int(left[-1])
+
+        if (left == nw and left == sw):
+            island_x = x - 2
+            island_y = y
+        elif (left == nw):
+            island_x = x - 2
+            island_y = y - 1
+        else:
+            island_x = x - 2
+            island_y = y + 1
+
+        if(team_signal[2*island_no-2] == " "):
+            team_signal = team_signal[0:2*island_no-2] + cipher(island_x) + cipher(island_y) + team_signal[2*island_no:]
 
     elif (right[:-1] == "island"):
-        if(right == ne and right == se):
-            s = right[-1] + str(x + 2) + "," + str(y)
-        elif(right == ne):
-            s = right[-1] + str(x + 2) + "," + str(y-1)
-        else:
-            s = right[-1] + str(x + 2) + "," + str(y+1)
 
-        if(island_cord[int(s[0])] == ""):
-            island_cord[int(s[0])] = s[1:]
+        island_no = int(right[-1])
+
+        if(right == ne and right == se):
+            island_x = x + 2
+            island_y = y
+        elif(right == ne):
+            island_x = x + 2
+            island_y = y - 1
+        else:
+            island_x = x + 2
+            island_y = y + 1
+
+        if(team_signal[2*island_no-2] == " "):
+            team_signal = team_signal[0:2*island_no-2] + cipher(island_x) + cipher(island_y) + team_signal[2*island_no:]
     
     elif (ne[:-1] == "island"):
-        s = ne[-1] + str(x + 2) + "," + str(y-2)
-        if(island_cord[int(s[0])] == ""):
-            island_cord[int(s[0])] = s[1:]
+
+        island_no = int(ne[-1])
+
+        island_x = x + 2
+        island_y = y - 2
+
+        if(team_signal[2*island_no-2] == " "):
+            team_signal = team_signal[0:2*island_no-2] + cipher(island_x) + cipher(island_y) + team_signal[2*island_no:]
 
     elif (se[:-1] == "island"):
-        s = se[-1] + str(x + 2) + "," + str(y+2)
-        if(island_cord[int(s[0])] == ""):
-            island_cord[int(s[0])] = s[1:]
+
+        island_no = int(se[-1])
+
+        island_x = x + 2
+        island_y = y + 2
+
+        if(team_signal[2*island_no-2] == " "):
+            team_signal = team_signal[0:2*island_no-2] + cipher(island_x) + cipher(island_y) + team_signal[2*island_no:]
+
 
     elif (nw[:-1] == "island"):
-        s = nw[-1] + str(x - 2) + "," + str(y-2)
-        if(island_cord[int(s[0])] == ""):
-            island_cord[int(s[0])] = s[1:]
+
+        island_no = int(nw[-1])
+
+        island_x = x - 2
+        island_y = y - 2
+
+        if(team_signal[2*island_no-2] == " "):
+            team_signal = team_signal[0:2*island_no-2] + cipher(island_x) + cipher(island_y) + team_signal[2*island_no:]
 
     elif (sw[:-1] == "island"):
-        s = sw[-1] + str(x - 2) + "," + str(y + 2)
-        if(island_cord[int(s[0])] == ""):
-            island_cord[int(s[0])] = s[1:]
 
-    return island_cord
+        island_no = int(sw[-1])
+
+        island_x = x - 2
+        island_y = y + 2
+
+        if(team_signal[2*island_no-2] == " "):
+            team_signal = team_signal[0:2*island_no-2] + cipher(island_x) + cipher(island_y) + team_signal[2*island_no:]
+
+    pirate.setTeamSignal(team_signal)
