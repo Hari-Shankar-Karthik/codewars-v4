@@ -14,7 +14,8 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 - targetY (4)
 - was_last_move_1: Required for explore_quadrant.py (5)
 - is_home_explored: Required for explore_quadrant.py (6)
-
+- quadrant_exploring: Required for explore_quadrant.py (7)
+- is_exploring_X: Required for explore_quadrant.py (8)
 
 ## Team Signal Composition: *Add more as required*
 **NOTE: All items are ciphered and take up only 1 character space unless mentioned otherwise.**
