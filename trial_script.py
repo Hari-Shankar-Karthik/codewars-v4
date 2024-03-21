@@ -11,7 +11,7 @@ def ActPirate(pirate):
     y_dimension = pirate.getDimensionY()
     x, y = pirate.getPosition()
 
-    
+    is_home_explored = False
 
     if is_home_explored:
         return explore_side_quadrant(pirate)

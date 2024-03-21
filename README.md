@@ -18,7 +18,7 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 
 ## Team Signal Composition: *Add more as required*
 **NOTE: All items are ciphered and take up only 1 character space unless mentioned otherwise.**
-- island1X, island1Y, island2X, island2Y, island3X, island3Y (6 characters)
+- island1X, island1Y, island2X, island2Y, island3X, island3Y (first 6 characters)
 - Time frames stored in next 3 characters (required for gradual_defense)
 - Total number of pirates alive
 - Storing 10 closes pirate IDs to every island (30 characters in total)
