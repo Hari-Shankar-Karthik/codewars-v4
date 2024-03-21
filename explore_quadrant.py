@@ -1,20 +1,31 @@
 from random import randint
+from utils.pirate_movements import moveTo, moveAway
 
-def explore_quadrant(pirate, primary_moves, lateral_moves):
+def explore_main_quadrant(pirate, move_1, move_2):
     pirate_signal = pirate.getSignal().split(" ")
-    last_move =  int(pirate_signal[2])
+    if pirate_signal[2] == "":
+        pirate_signal[2] = "F"
+    
+    was_last_move_1 =  pirate_signal[2] == "T"
     current_move = None
 
-    def sample(collection):
-        return collection[randint(0, len(collection) - 1)]
+    is_favourable = lambda percent_chance: randint(1, 100) <= percent_chance
 
-    if last_move < 0:
-        current_move = sample(lateral_moves)
-        last_move *= -1
+    if is_favourable(75):
+        current_move = move_1 if was_last_move_1 else move_2
     else:
-        current_move = primary_moves[last_move % len(primary_moves)]
-        last_move = -(1 + last_move)
+        was_last_move_1 = not was_last_move_1
+        current_move = move_2 if was_last_move_1 else move_1
     
-    pirate_signal[2] = str(last_move)
+    pirate_signal[2] = "T" if was_last_move_1 else "F"
     pirate.setSignal(" ".join(pirate_signal))
     return current_move
+    
+    # last_move = (last_move + 1) % len(primary_moves)
+    
+    # pirate_signal[2] = str(last_move)
+    # pirate.setSignal(" ".join(pirate_signal))
+    # return current_move
+
+    # sample = lambda collection: collection[randint(0, len(collection) - 1)]
+    # return sample(primary_moves)

@@ -9,7 +9,7 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 **NOTE: All values are space-separated to make it easy to access via split method.**
 - x1: (2 digit number) - current location x coordinate
 - y1: (2 digit number) - current location y coordinate
-- was_last_primary: (1 digit number) - stores whether the previous move was along the primary direction or the lateral direction. Required for explore_quadrants.py
+- was_last_move_1: (1 digit "T" or "F") - stores whether the previous move was the first primary move or not. Required for explore_quadrant.py
 
 
 ## Team Signal Composition: *Add more as required*
