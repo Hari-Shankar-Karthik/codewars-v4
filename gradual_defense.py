@@ -105,8 +105,8 @@ def gradualDefenseTeam(team):
 
     team_signal = team.getTeamSignal()
 
-    for island_no in range(1,4):        # Reset signal if island is defended successfully 
-            if team_signal[5 + island_no] != " " and status[2 + island_no] != "oppCapturing" :
+    for island_no in range(1,4):        # Reset signal if island is defended successfully or if all pirates have died which is remaining
+            if team_signal[5 + island_no] != " " and (status[2 + island_no] != "oppCapturing" or decipher(team_signal[5 + island_no]) == -60):
                 team_signal = team_signal[:5 + island_no] + " " + team_signal[6 + island_no:]
                 team.setTeamSignal(team_signal) 
         
