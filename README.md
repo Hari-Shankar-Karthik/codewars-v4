@@ -30,5 +30,7 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 - Storing 10 closes pirate IDs to every island (30 characters in total)
 -  presence of monk: island1 (40), island2 (41), island3 (42)
 -  guards: is_there_a_need_to_guard(island2) (43)
--  guard_ID's: ID's of the pirates that will become a guard(44:60)
+-  guard_ID's: ID's of the pirates that will become a guard and it's location (44-68) excluding 68.
+   format each location will have two pirate ID's corresponding to that location. (location,pirate1ID,pirate2ID)
+   what is location here: each tile in the boundary of the island will have a number from 1-8 and that describes the location.
    
