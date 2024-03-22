@@ -10,32 +10,107 @@ def scout_explore(pirate):
     # whether home quadrant is explored or not is stored in index 6 of the pirate signal
     is_home_explored = pirate_signal[6] == "T"
 
+    print(pirate_signal)
+
     if is_home_explored:
         # Index 7 contains the quadrant being explored
         # Index 8 contains the direction being explored
+        # Index 9 stores T if rebound is activated
         quadrant_exploring = int(pirate_signal[7])
         is_exploring_X = pirate_signal[8] == "T"
         if quadrant_exploring == 1:
             if is_exploring_X:
+                if x == x_dimension - 1:
+                    pirate_signal[9] = "T"
+                    pirate.setSignal("".join(pirate_signal))
+                # if x == 0:
+                if x == x_dimension//2:
+                    pirate_signal[9] = " "
+                    pirate.setSignal("".join(pirate_signal))
+                if pirate_signal[9] == "T":
+                    return explore_side_quadrant(pirate, 4, [1, 3])
                 return explore_side_quadrant(pirate, 2, [1, 3])
-        
+
+            if y == 0:
+                pirate_signal[9] = "T"
+                pirate.setSignal("".join(pirate_signal))
+            # if y == y_dimension - 1:
+            if y == y_dimension//2:
+                pirate_signal[9] = " "
+                pirate.setSignal("".join(pirate_signal))
+            if pirate_signal[9] == "T":
+                return explore_side_quadrant(pirate, 3, [2, 4])
             return explore_side_quadrant(pirate, 1, [2, 4])
         
         if quadrant_exploring == 2:
             if is_exploring_X:
+                if x == 0:
+                    pirate_signal[9] = "T"
+                    pirate.setSignal("".join(pirate_signal))
+                # if x == x_dimension - 1:
+                if x == x_dimension//2:
+                    pirate_signal[9] = " "
+                    pirate.setSignal("".join(pirate_signal))
+                if pirate_signal[9] == "T":
+                    return explore_side_quadrant(pirate, 2, [1, 3])
                 return explore_side_quadrant(pirate, 4, [1, 3])
         
+            if y == 0:
+                pirate_signal[9] = "T"
+                pirate.setSignal("".join(pirate_signal))
+            # if y == y_dimension - 1:
+            if y == y_dimension//2:
+                pirate_signal[9] = " "
+                pirate.setSignal("".join(pirate_signal))
+            if pirate_signal[9] == "T":
+                return explore_side_quadrant(pirate, 3, [2, 4])
             return explore_side_quadrant(pirate, 1, [2, 4])
         
         if quadrant_exploring == 3:
             if is_exploring_X:
+                if x == 0 :
+                    pirate_signal[9] = "T"
+                    pirate.setSignal("".join(pirate_signal))
+                # if x == x_dimension - 1:
+                if x == x_dimension//2:
+                    pirate_signal[9] = " "
+                    pirate.setSignal("".join(pirate_signal))
+                if pirate_signal[9] == "T":
+                    return explore_side_quadrant(pirate, 2, [1, 3])
                 return explore_side_quadrant(pirate, 4, [1, 3])
-        
-            return explore_side_quadrant(pirate, 3, [1, 4])
-        
+
+            if y == y_dimension - 1:
+                pirate_signal[9] = "T"
+                pirate.setSignal("".join(pirate_signal))
+            # if y == 0:
+            if y == y_dimension//2:
+                pirate_signal[9] = " "
+                pirate.setSignal("".join(pirate_signal))
+            if pirate_signal[9] == "T":
+                return explore_side_quadrant(pirate, 1, [2, 4])
+            return explore_side_quadrant(pirate, 3, [2, 4])
+            
         if is_exploring_X:
+            if x == x_dimension - 1 :
+                pirate_signal[9] = "T"
+                pirate.setSignal("".join(pirate_signal))
+            # if x == 0:
+            if x == x_dimension//2:
+                pirate_signal[9] = " "
+                pirate.setSignal("".join(pirate_signal))
+            if pirate_signal[9] == "T":
+                return explore_side_quadrant(pirate, 4, [1, 3])
             return explore_side_quadrant(pirate, 2, [1, 3])
-        
+                    
+        if y == y_dimension - 1:
+            pirate_signal[9] = "T"
+            pirate.setSignal("".join(pirate_signal))
+        # if y == 0:
+        if y == y_dimension//2:
+            pirate_signal[9] = " "
+            pirate.setSignal("".join(pirate_signal))
+        if pirate_signal[9] == "T":
+            return explore_side_quadrant(pirate, 1, [2, 4])
         return explore_side_quadrant(pirate, 3, [2, 4])    
 
     # if the pirate has just completed home quadrant, switch to side quadrant exploration
