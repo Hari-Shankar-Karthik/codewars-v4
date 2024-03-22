@@ -16,7 +16,10 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 - is_home_explored: Required for explore_quadrant.py (6)
 - quadrant_exploring: Required for explore_quadrant.py (7)
 - is_exploring_X: Required for explore_quadrant.py (8)
-- rebound : T if rebound is active otherwise expty explore_quadrant.py (9)
+- is_monk: monk of island1 (9)
+          monk of island2 (10)
+          monk of island3 (11)
+- rebound : T if rebound is active otherwise expty explore_quadrant.py (12)
 
 ## Team Signal Composition: *Add more as required*
 **NOTE: All items are ciphered and take up only 1 character space unless mentioned otherwise.**
