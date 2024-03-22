@@ -27,3 +27,6 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 - Time frames stored in next 3 characters (required for gradual_defense)
 - Total number of pirates alive
 - Storing 10 closes pirate IDs to every island (30 characters in total)
+-  presence of monk:island1 (40)
+                    island2 (41)
+                    island3 (42)
