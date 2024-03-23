@@ -4,7 +4,7 @@ def infiltrate(pirate):
     pirate_signal = list(pirate.getSignal())
     deploy_x, deploy_y = pirate.getDeployPoint()
 
-    def get_quadrant(x, y):
+    def get_quadrant(pirate, x, y):
         dimension_x = pirate.getDimensionX()
         dimension_y = pirate.getDimensionY()
         if x < dimension_x / 2:
@@ -24,7 +24,7 @@ def infiltrate(pirate):
             return 1
         return 2
     
-    home_quadrant = get_quadrant(deploy_x, deploy_y)
+    home_quadrant = get_quadrant(pirate, deploy_x, deploy_y)
     opponent_quadrant = get_opposite_quadrant(home_quadrant)
     
     if pirate_signal[7] == " ":
