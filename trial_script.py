@@ -9,7 +9,7 @@ def pirate_setup(pirate):
 
 def ActPirate(pirate):
     pirate_setup(pirate)
-    if pirate.getCurrentFrame() >= 250:
+    if pirate.getCurrentFrame() >= 100:
         return infiltrate(pirate)
     return scout_explore(pirate)
         

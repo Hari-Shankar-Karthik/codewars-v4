@@ -83,7 +83,7 @@ def gradualDefenseTeam(team):
             island_y = decipher(team_signal[2*island_no - 1])
             assembly_x = max(island_x - 6, 1)
             assembly_y = island_y
-            l = ClosestN(team, assembly_x, assembly_x, min(no_of_pirates,10))
+            l = ClosestN(team, assembly_x, assembly_y, min(no_of_pirates,10))
             while len(l) != 10:
                 l.append(" ")
             team_signal = team_signal[0:10*island_no] + cipher(l) + team_signal[10*(island_no + 1):]
