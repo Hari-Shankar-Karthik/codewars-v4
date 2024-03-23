@@ -37,3 +37,4 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
    what is location here: each tile in the boundary of the island will have a number from 1-8 and that describes the location.
 -  counter for L-shaped defence while capturing - (69)
 -  pirade ids of 5 pirates -- (70-75), excluding 75
+-  defending monk count- island1 -  75, island2 - 76 , island3 - 77
