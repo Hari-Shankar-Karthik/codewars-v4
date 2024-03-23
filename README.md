@@ -23,7 +23,7 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 - is_guard: if that pirate is a guard or not(13)
 - has_infiltrated: stores whether that pirate has reached the enemy spawn (for infiltrate.py) (14)
 - Rebound : Two indices for two separate quadrants (15, 16)
-- attacking_monk : is attacking monk or not (17)
+- attacking_monk : is attacking monk or not (17) for island 1 , 18 and 19 for 2 and 3 respectively
 
 ## Team Signal Composition: *Add more as required*
 **NOTE: All items are ciphered and take up only 1 character space unless mentioned otherwise.**
