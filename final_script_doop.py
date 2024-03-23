@@ -579,9 +579,6 @@ def intitializePirate(pirate):
     if pirate_signal == "":                         # Initialization
         pirate_signal = cipher(int(pirate.getID())) + cipher(pirate.getPosition()[0]) + cipher(pirate.getPosition()[1]) + " "*97
         pirate.setSignal(pirate_signal)
-    else:
-        pirate_signal = pirate_signal[:1] + cipher(pirate.getPosition()[0]) + cipher(pirate.getPosition()[1]) + pirate_signal[3:]
-        pirate.setSignal(pirate_signal) 
 
 def intitializeTeam(team):
     team_signal = team.getTeamSignal()
@@ -591,10 +588,8 @@ def intitializeTeam(team):
         team_signal = " "*9 + cipher(no_of_pirates) + " "*90
         team.setTeamSignal(team_signal)
     
-    team_signal = team_signal[:9] + cipher(no_of_pirates) + team_signal[10:] 
-    team_signal_final = team_signal[:75] + "000" + team_signal[78:]
-    #Updating no of pirates
-    team.setTeamSignal(team_signal_final)
+    team_signal = team_signal[:9] + cipher(no_of_pirates) + team_signal[10:]        #Updating no of pirates
+    team.setTeamSignal(team_signal)
 
 def gradualDefensePirate(pirate):
     
@@ -676,7 +671,7 @@ def monk(pirate):
     island2_location = decipher(teamsignal[2:4])
     island3_location = decipher(teamsignal[4:6])
     #check whether the monk is at the center of the island or not.if it is M then he is a monk
-    location = decipher(piratesignal[1:3])
+    location = pirate.getPosition()
     trackplayers = pirate.trackPlayers()
     if (location == island1_location and trackplayers[0]=='myCaptured' and island1_monk !='N' and trackplayers[3]!='oppCaptured' ):
         final_pirate_signal = piratesignal[:9] + "M" + piratesignal[10:]
@@ -740,7 +735,7 @@ def guard(pirate):
     teamsignal = pirate.getTeamSignal()
     piratesignal = pirate.getSignal()
     pirateID = int(pirate.getID())
-    location = decipher(piratesignal[1:3])
+    location = pirate.getPosition()
     island2_location = decipher(teamsignal[2:4])
     if  piratesignal[13]=="C":
         for i in range(44,68):
@@ -1021,6 +1016,7 @@ def guard_team(team):
     trackplayers = team.trackPlayers()
     if trackplayers[1]=='myCapturing' and teamsignal[44:47]=='   ':
         lis = ClosestN(team , island2_location[0] , island2_location[1] , 16)
+        lis.sort()
         add = [" "]*24
         #below approach will ensure that each location is atleast given one pirate 
         j = 0#j is used as index to loop over lis
@@ -1030,72 +1026,36 @@ def guard_team(team):
         L = [44,47,50,53,56,59,62,65]
         for i in range(44,68):
             if i not in L:
-                # print(lis)
-                # print(j)
+                print(j)
                 if i%3==0:
-                    if j<len(lis):
-                        add[y] = cipher(lis[j])
-                        j+=1
-                        y+=3
+                    add[y] = lis[j]
+                    j+=1
+                    y+=3
                 else:
-                    if j<len(lis):
-                        add[z] = cipher(lis[j])
-                        j+=1
-                        z+=3
+                    add[z] = lis[j]
+                    j+=1
+                    z+=3
             else:
                 add[x] = str(((i-44)//3 + 1))
                 x+=3
         adds = "".join(map(str,add))
         final_teamsignal = teamsignal[:43] + adds + teamsignal[68:]
-        print(final_teamsignal)
         team.setTeamSignal(final_teamsignal)
         pass               
-def attacking_monk(pirate):
-    teamsignal = pirate.getTeamSignal()
-    piratesignal = pirate.getSignal()
-    currentx = pirate.investigate_current()
-    current = currentx[0]
-    print(teamsignal)
-    if current == "island1" and int(teamsignal[75]) < 5 and piratesignal[17]!="Y":
-        n = int(teamsignal[75])+1
-        final_pirate_signal = piratesignal[:17]+"Y"+piratesignal[18:]
-        final_team_signal = teamsignal[:75] + str(n) + teamsignal[76:]
-        pirate.setTeamSignal(final_team_signal)
-        pirate.setSignal(final_pirate_signal)
-        return 0
-    elif current == "island2" and int(teamsignal[76]) < 5 and piratesignal[18]!="Y":
-        n = int(teamsignal[76])+1
-        final_pirate_signal = piratesignal[:18]+"Y"+piratesignal[19:]
-        final_team_signal = teamsignal[:76] + str(n) + teamsignal[77:]
-        pirate.setTeamSignal(final_team_signal)
-        pirate.setSignal(final_pirate_signal)
-        return 0
-    elif current == "island3" and int(teamsignal[77]) < 5 and piratesignal[19]!="Y":
-        n = int(teamsignal[77])+1
-        final_pirate_signal = piratesignal[:19]+"Y"+piratesignal[20:]
-        final_team_signal = teamsignal[:77] + str(n) + teamsignal[78:]
-        pirate.setTeamSignal(final_team_signal)
-        pirate.setSignal(final_pirate_signal)
-        return 0
-    return None
+
 def ActPirate(pirate):
     
     intitializePirate(pirate)
     updateIslandCord(pirate)
-    attackmonk = attacking_monk(pirate)
-    print(attackmonk)
-    if attackmonk is not None:
-        return attackmonk
-        
+
     # check for sahil's L-shape capture function (capturing home island)
-    # check for rolling guard (capturing second`` island)
+
+    # check for rolling guard (capturing second island)
     move_guard = guard(pirate)
-    #print (move_guard)
     if move_guard is not None:
         return move_guard
     # check for monk (defending captured islands)
     move_monk = monk(pirate)
-    #print(move_monk)
     if move_monk is not None:
         return move_monk
     # check for gradual defense (defending islands whose monk has been killed)

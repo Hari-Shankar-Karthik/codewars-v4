@@ -6,7 +6,6 @@ def calculateFrames(team, no_of_pirates_defending, island_no):
     team_signal = team.getTeamSignal()
     island_x = decipher(team_signal[2*island_no - 2])
     island_y = decipher(team_signal[2*island_no - 1])
-
     for pirate_signal in pirate_signals:
         if pirate_signal[0] == team_signal[10*island_no + no_of_pirates_defending - 1]:
             curr_x = decipher(pirate_signal[1])

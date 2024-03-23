@@ -1,11 +1,9 @@
 import random
 import sys
 from random import random as rnd
-
 import numpy as np
 import pygame
 from pygame.sprite import Group
-
 from .collectible import Collectible, Sea
 from .island import Island
 from .team import Team

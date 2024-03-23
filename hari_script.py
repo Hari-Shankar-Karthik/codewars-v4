@@ -1,6 +1,9 @@
 from random import randint
 
-from utils.pirate_movements import moveTo, moveAway
+from utils.pirate_movements import moveTo, moveAway 
+from utils.cipher import cipher
+from utils.decipher import decipher
+from utils.Monk_and_guards import monk
 # from utils.defend_island import defend_island
 
 # TEAM SIGNAL FORMAT:
@@ -60,7 +63,7 @@ def defender_move(pirate): # TODO: IMPLEMENT DEFENDER MOVEMENT
 # def attacker_move(pirate): TODO: IMPLEMENT ATTACKER MOVEMENT
 
 def ActPirate(pirate):
-
+    monk(pirate)
     deploy_x, deploy_y = pirate.getDeployPoint()
 
     def store_island_coords(team_signal, current_location):
@@ -87,8 +90,7 @@ def ActPirate(pirate):
 
     # newly created pirates are set to Scout by default
     if pirate.getSignal() == "":
-        pirate.setSignal("S")
-    
+        pirate.setSignal(cipher("S"))    
     pirate_signal = pirate.getSignal()
     team_signal = list(pirate.getTeamSignal())
     track = pirate.trackPlayers()
@@ -268,5 +270,9 @@ def ActPirate(pirate):
     
 
 def ActTeam(team):
-    team.setTeamSignal(" " * 18)
+    team.setTeamSignal(" " * 100)
     pass
+
+#each pirate should check whether he is in the center of the island and in the team signal do we have a presence of monk in that island or not
+#team signal will have something like "Y" for presence of monk in that island and "N" for absence of monk in that island
+#in the pirate signal 7th character is meant for whether he is monk or not 
