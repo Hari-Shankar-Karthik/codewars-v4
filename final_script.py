@@ -56,8 +56,6 @@ def scout_explore(pirate):
     # whether home quadrant is explored or not is stored in index 6 of the pirate signal
     is_home_explored = pirate_signal[6] == "T"
 
-    # print(pirate_signal)
-
     if is_home_explored:
         # Index 7 contains the quadrant being explored
         # Index 8 contains the direction being explored
@@ -579,7 +577,7 @@ def updateIslandCord(pirate):
 def intitializePirate(pirate):
     pirate_signal  = pirate.getSignal()
     if pirate_signal == "":                         # Initialization
-        pirate_signal = cipher(int(pirate.getID())) + " "*99
+        pirate_signal = cipher(int(pirate.getID())) + cipher(pirate.getPosition()[0]) + cipher(pirate.getPosition()[1]) + " "*97
         pirate.setSignal(pirate_signal)
 
 def intitializeTeam(team):
