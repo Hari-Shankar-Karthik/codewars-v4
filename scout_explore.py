@@ -195,15 +195,3 @@ def scout_explore(pirate):
         return explore_main_quadrant(pirate, 4, 3)
     elif x > x_dimension / 2 and y > y_dimension / 2:
         return explore_main_quadrant(pirate, 4, 1)
-    
-    # OLD SCRIPT:
-    # if x < x_dimension / 2:
-    #     if y < y_dimension / 2:
-    #         return explore_main_quadrant(pirate, 2, 3)
-        
-    #     return explore_main_quadrant(pirate, 2, 1)
-    
-    # if y < y_dimension / 2:
-    #     return explore_main_quadrant(pirate, 4, 3)
-    
-    # return explore_main_quadrant(pirate, 4, 1)
