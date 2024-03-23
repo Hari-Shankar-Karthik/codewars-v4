@@ -23,7 +23,7 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 - is_guard: if that pirate is a guard or not(13)
 - has_infiltrated: stores whether that pirate has reached the enemy spawn (for infiltrate.py) (14)
 - Rebound : Two indices for two separate quadrants (15, 16)
-
+- attacking_monk : is attacking monk or not (17) for island 1 , (18)  for 2 , (19) for 3
 ## Team Signal Composition: *Add more as required*
 **NOTE: All items are ciphered and take up only 1 character space unless mentioned otherwise.**
 - island1X, island1Y, island2X, island2Y, island3X, island3Y (first 6 characters)
@@ -35,5 +35,6 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 -  guard_ID's: ID's of the pirates that will become a guard and it's location (44-68) excluding 68.
    format each location will have two pirate ID's corresponding to that location. (location,pirate1ID,pirate2ID)
    what is location here: each tile in the boundary of the island will have a number from 1-8 and that describes the location.
--  counter for L-shaped defence while capturing - (69)  
-   
+-  counter for L-shaped defence while capturing - (69)
+-  pirade ids of 5 pirates -- (70-75), excluding 75
+-  defending monk count- island1 -  75, island2 - 76 , island3 - 77
