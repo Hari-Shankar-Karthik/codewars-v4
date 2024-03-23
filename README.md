@@ -34,4 +34,5 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 -  guard_ID's: ID's of the pirates that will become a guard and it's location (44-68) excluding 68.
    format each location will have two pirate ID's corresponding to that location. (location,pirate1ID,pirate2ID)
    what is location here: each tile in the boundary of the island will have a number from 1-8 and that describes the location.
+-  timeframe of a specific time - (69)  
    
