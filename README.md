@@ -19,7 +19,7 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
 - is_monk: monk of island1 (9)
           monk of island2 (10)
           monk of island3 (11)
-- ~~ rebound : T if rebound is active otherwise expty explore_quadrant.py (12) ~~
+- in_useless_island: Required for rebounding. (Added by Hari) (12)
 - is_guard: if that pirate is a guard or not(13)
 - has_infiltrated: stores whether that pirate has reached the enemy spawn (for infiltrate.py) (14)
 - Rebound : Two indices for two separate quadrants (15, 16)
