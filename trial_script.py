@@ -12,4 +12,4 @@ def ActPirate(pirate):
     return scout_explore(pirate)
         
 def ActTeam(team):
-    pass
+    print(team.getTeamSignal())

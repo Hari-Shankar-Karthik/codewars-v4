@@ -15,7 +15,7 @@ def scout_explore(pirate):
     if is_home_explored:
         # Index 7 contains the quadrant being explored
         # Index 8 contains the direction being explored
-        # Index 12 stores T if rebound is activated
+        # Index 15 stores T if rebound is activated
         quadrant_exploring = int(pirate_signal[7])
         is_exploring_X = pirate_signal[8] == "T"
         if quadrant_exploring == 1:

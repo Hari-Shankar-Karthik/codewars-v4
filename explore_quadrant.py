@@ -31,8 +31,9 @@ def explore_side_quadrant(pirate, primary_move, secondary_moves):
     # if we have completed exploring this quadrant, check if this is the one with no island
     # if so, we need to move to the home quadrant
     # index 12 in the pirate signal stores whether or not the quadrant has an island
+    my_quadrant = get_quadrant(pirate, pirate_x, pirate_y)
+    
     for island_number in [1, 2, 3]:
-        my_quadrant = get_quadrant(pirate, pirate_x, pirate_y)
         island_x = decipher(pirate_signal[island_number * 2 - 2])
         island_y = decipher(pirate_signal[island_number * 2 - 1])
         if island_x != " " and island_y != " ":
