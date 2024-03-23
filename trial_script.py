@@ -1,4 +1,5 @@
 from scout_explore import scout_explore
+from infiltrate import infiltrate
 
 name = "trial_script"
 
@@ -8,6 +9,8 @@ def pirate_setup(pirate):
 
 def ActPirate(pirate):
     pirate_setup(pirate)
+    if pirate.getCurrentFrame() >= 250:
+        return infiltrate(pirate)
     return scout_explore(pirate)
         
 def ActTeam(team):

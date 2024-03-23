@@ -18,7 +18,7 @@ def moveTo(x , y , Pirate):
 def checkfriends(pirate , quad ):
     sum = 0 
     up = pirate.investigate_up()[1]
-    print(up)
+    # print(up)
     down = pirate.investigate_down()[1]
     left = pirate.investigate_left()[1]
     right = pirate.investigate_right()[1]

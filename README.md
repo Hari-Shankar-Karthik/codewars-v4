@@ -21,6 +21,7 @@ Hi everyone! This is where we'll be storing all our code on this project. Some b
           monk of island3 (11)
 - rebound : T if rebound is active otherwise expty explore_quadrant.py (12)
 - is_guard: if that pirate is a guard or not(13)
+- has_infiltrated: stores whether that pirate has reached the enemy spawn (for infiltrate.py) (14)
 
 ## Team Signal Composition: *Add more as required*
 **NOTE: All items are ciphered and take up only 1 character space unless mentioned otherwise.**

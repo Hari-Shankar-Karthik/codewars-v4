@@ -10,7 +10,7 @@ def scout_explore(pirate):
     # whether home quadrant is explored or not is stored in index 6 of the pirate signal
     is_home_explored = pirate_signal[6] == "T"
 
-    print(pirate_signal)
+    # print(pirate_signal)
 
     if is_home_explored:
         # Index 7 contains the quadrant being explored

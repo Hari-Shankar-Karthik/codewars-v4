@@ -38,44 +38,55 @@ def infiltrate(pirate):
     def goto_edge(current_quadrant, target_quadrant):
         if current_quadrant == 1:
             if target_quadrant == 2:
-                if pirate.investigateUp()[0] == "wall":
+                if pirate.investigate_up()[0] == "wall":
                     return None
                 return 1
             # target_quadrant == 4
-            if pirate.investigateRight()[0] == "wall":
+            if pirate.investigate_right()[0] == "wall":
                 return None
             return 2
         if current_quadrant == 2:
             if target_quadrant == 1:
-                if pirate.investigateUp()[0] == "wall":
+                if pirate.investigate_up()[0] == "wall":
                     return None
                 return 1
             # target_quadrant == 3
-            if pirate.investigateLeft()[0] == "wall":
+            if pirate.investigate_left()[0] == "wall":
                 return None
             return 4
         if current_quadrant == 3:
             if target_quadrant == 2:
-                if pirate.investigateLeft()[0] == "wall":
+                if pirate.investigate_left()[0] == "wall":
                     return None
                 return 4
             # target_quadrant == 4
-            if pirate.investigateDown()[0] == "wall":
+            if pirate.investigate_down()[0] == "wall":
                 return None
             return 3
         # current_quadrant == 4
         if target_quadrant == 1:
-            if pirate.investigateRight()[0] == "wall":
+            if pirate.investigate_right()[0] == "wall":
                 return None
             return 2
         # target_quadrant == 3
-        if pirate.investigateDown()[0] == "wall":
+        if pirate.investigate_down()[0] == "wall":
             return None
         return 3
 
     def goto_enemy_spawn(current_quadrant, opponent_quadrant):
-        if current_quadrant == opponent_quadrant:
+        if opponent_quadrant == 1:
+            if pirate.investigate_up()[0] == "wall" and pirate.investigate_right()[0] == "wall":
+                return None
+        if opponent_quadrant == 2:
+            if pirate.investigate_up()[0] == "wall" and pirate.investigate_left()[0] == "wall":
+                return None
+        if opponent_quadrant == 3:
+            if pirate.investigate_down()[0] == "wall" and pirate.investigate_left()[0] == "wall":
+                return None
+        # opponent_quadrant == 4
+        if pirate.investigate_down()[0] == "wall" and pirate.investigate_right()[0] == "wall":
             return None
+                
         if current_quadrant == 1:
             if opponent_quadrant == 2:
                 return 4
@@ -98,22 +109,29 @@ def infiltrate(pirate):
         return 4
 
 
-    def find_enemy_island():
+    def find_enemy_island(opponent_quadrant):
         if opponent_quadrant == 1:
-            return explore_main_quadrant(3, 4)
+            return explore_main_quadrant(pirate, 3, 4)
         if opponent_quadrant == 2:
-            return explore_main_quadrant(2, 3)
+            return explore_main_quadrant(pirate, 2, 3)
         if opponent_quadrant == 3:
-            return explore_main_quadrant(1, 2)
+            return explore_main_quadrant(pirate, 1, 2)
         # opponent_quadrant == 4
-        return explore_main_quadrant(1, 4)
+        return explore_main_quadrant(pirate, 1, 4)
     
-    temp = goto_edge(quadrant, opponent_quadrant)
-    if temp is not None:
-        return temp
-    
-    temp = goto_enemy_spawn(quadrant, opponent_quadrant)
-    if temp is not None:
-        return temp
+    has_infiltrated = pirate_signal[14] == "T"
+
+    if not has_infiltrated:
+        temp = goto_edge(quadrant, opponent_quadrant)
+        if temp is not None:
+            return temp
+        
+        temp = goto_enemy_spawn(quadrant, opponent_quadrant)
+        if temp is not None:
+            return temp
+        
+        has_infiltrated = True
+        pirate_signal[14] = "T"
+        pirate.setSignal("".join(pirate_signal))
     
     return find_enemy_island(opponent_quadrant)
